@@ -11,17 +11,12 @@ import lombok.Setter;
 @Entity
 public class SessionPlayer {
 
-    @EmbeddedId
-    private SessionPlayerKey id;
-
+    @Id
     @ManyToOne
-    @MapsId("sessionId")
-    @JoinColumn(name = "session_id")
     private Session session;
 
+    @Id
     @ManyToOne
-    @MapsId("playerId")
-    @JoinColumn(name = "player_id")
     private Player player;
 
     private int score;

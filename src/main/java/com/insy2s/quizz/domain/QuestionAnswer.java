@@ -11,17 +11,12 @@ import lombok.Setter;
 @Entity
 public class QuestionAnswer {
 
-    @EmbeddedId
-    private QuestionAnswerKey id;
-
+    @Id
     @ManyToOne
-    @MapsId("questionId")
-    @JoinColumn(name = "question_id")
     private Question question;
 
+    @Id
     @ManyToOne
-    @MapsId("answerId")
-    @JoinColumn(name = "answer_id")
     private Answer answer;
 
     private boolean isCorrect;

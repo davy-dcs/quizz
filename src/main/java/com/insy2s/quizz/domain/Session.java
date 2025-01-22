@@ -1,20 +1,23 @@
 package com.insy2s.quizz.domain;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+@AllArgsConstructor
+@Getter
 @Entity
 public class Session {
-
     @Id
-    private Long id;
-
-    @Column(unique = true)
-    private UUID uuid = UUID.randomUUID();
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(updatable = false)
+    private UUID uuid;
 
     @Enumerated(EnumType.STRING)
     private Mode mode;
@@ -22,7 +25,7 @@ public class Session {
     @ManyToOne
     private Quizz quizz;
 
-
+    @Setter
     private int timer;
 
     @Column(nullable = false)
