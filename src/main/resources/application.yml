@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: quizz
+  datasource:
+    url: jdbc:postgresql://localhost:5432/quizz
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
