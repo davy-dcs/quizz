@@ -1,16 +1,19 @@
 package com.insy2s.quizz.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 @Entity
 public class Answer {
     @Id
@@ -18,9 +21,9 @@ public class Answer {
     @Column(updatable = false)
     private UUID uuid;
 
-    @Setter
+    @NotBlank(message = "Answer is mandatory.")
     private String value;
 
     @OneToMany(mappedBy = "answer")
-    private List<QuestionAnswer> questionAnswerList = new ArrayList<>();
+    private List<QuestionAnswer> questions = new ArrayList<>();
 }

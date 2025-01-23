@@ -1,9 +1,10 @@
 package com.insy2s.quizz.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +12,11 @@ import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 @Entity
 public class Session {
     @Id
@@ -19,15 +24,18 @@ public class Session {
     @Column(updatable = false)
     private UUID uuid;
 
+    @NotNull(message = "Mode is mandatory.")
     @Enumerated(EnumType.STRING)
     private Mode mode;
 
+    @NotNull(message = "Quiz is mandatory.")
     @ManyToOne
-    private Quizz quizz;
+    private Quiz quiz;
 
-    @Setter
+    @Positive
     private int timer;
 
+    @FutureOrPresent(message = "Date must be future or present")
     @Column(nullable = false)
     private Date date;
 

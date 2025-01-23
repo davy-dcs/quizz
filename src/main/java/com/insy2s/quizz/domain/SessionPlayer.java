@@ -1,23 +1,30 @@
 package com.insy2s.quizz.domain;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode
+@ToString
 @Entity
 public class SessionPlayer {
-
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @NotNull(message = "Session is mandatory.")
     @ManyToOne
     private Session session;
 
-    @Id
+    @NotNull(message = "Player is mandatory.")
     @ManyToOne
     private Player player;
 
-    private int score;
+    @Min(0)
+    @Max(100)
+    private double score;
 }

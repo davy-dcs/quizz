@@ -7,6 +7,6 @@ public enum Category {
     MUSIC,
     MOVIES,
     SPORTS,
-    ANIMALS
-
+    ANIMALS,
+    GENERAL_KNOWLEDGE
 }
