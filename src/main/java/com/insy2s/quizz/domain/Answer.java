@@ -18,12 +18,11 @@ import java.util.UUID;
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @EqualsAndHashCode.Exclude
     @Column(updatable = false)
     private UUID uuid;
 
     @NotBlank(message = "Answer is mandatory.")
+    @Column(unique = true)
     private String value;
-
-    @OneToMany(mappedBy = "answer")
-    private List<QuestionAnswer> questions = new ArrayList<>();
 }
