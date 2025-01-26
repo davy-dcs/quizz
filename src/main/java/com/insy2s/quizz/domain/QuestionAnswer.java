@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.UUID;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -13,8 +15,9 @@ import lombok.*;
 @Entity
 public class QuestionAnswer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @EqualsAndHashCode.Exclude
+    private UUID id;
 
     @NotNull(message = "Question is mandatory.")
     @ManyToOne

@@ -9,7 +9,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Getter
-public class QuestionPostDto {
+public class QuestionValueCategoriesDifficultyDto {
     private String value;
     private List<Category> categories;
     private Difficulty difficulty;
