@@ -21,13 +21,16 @@ import java.util.UUID;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @EqualsAndHashCode.Exclude
     @Column(updatable = false)
     private UUID uuid;
 
     @NotBlank(message = "Question is mandatory.")
+    @Column(unique = true)
     private String value;
 
     @OneToMany(mappedBy = "question")
+    @JsonIgnore
     private List<QuestionAnswer> answers = new ArrayList<>();
 
     @NotEmpty(message = "Question must contain at least one category.")
